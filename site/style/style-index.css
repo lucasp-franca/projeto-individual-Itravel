@@ -28,7 +28,7 @@ body {
         -moz-animation: fadeIn 0.5s ease-in-out;
         -o-animation: fadeIn 0.5s ease-in-out;
         animation: fadeIn 0.5s ease-in-out;
-        }
+}
 
 .container {
     display: flex;
@@ -89,6 +89,8 @@ button:hover {
 }
 h1 {
     text-align: center;
+    font-weight: normal;
+    margin-left: 15px;
 }
 
 .texto {
