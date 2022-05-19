@@ -21,18 +21,18 @@
                         <h3>Login</h3>
                         <form action="">
                             <label for="">E-mail:</label>
-                            <input type="text">
+                            <input id="input_email" type="text">
                             <label for="">Senha:</label>
-                            <input type="password">
-                            <button>
-                                <a href="">
+                            <input id="input_senha" type="password">
+                            <button onclick="entrar()">
+                                <a href="#">
                                     Entrar
                                 </a>
                             </button>
                         </form>
                     </div>
                     <div id="validacao">
-
+                        
                     </div>
                 </div>
             </div>
@@ -47,3 +47,28 @@
     </div>
 </body>
 </html>
+
+<script>
+
+    function entrar() {
+        var emailServer = input_email.value
+        var senhaServer = input_senha.value
+        
+        if(emailServer.length == false) {
+            validacao.innerHTML = "Digite seu e-mail."
+        }
+        else if(emailServer.indexOf("@") < 0) {
+            validacao.innerHTML = 'E-mail sem "@".'
+        }
+        else if(emailServer.endsWith("gmail.com") == false) {
+            validacao.innerHTML = 'E-mail não termina com "gmail.com".'
+        }
+        else if(senhaServer.length == false) {
+            validacao.innerHTML = "Digite sua senha."
+        }
+        else if(senhaServer.length > 0 && senhaServer.length < 8) {
+            validacao.innerHTML = "Senha deve ter pelo menos 8 caracteres."
+        }
+    }
+
+</script>
