@@ -74,6 +74,10 @@ a {
     align-items: center;
 }
 
+li:hover {
+    text-decoration: underline;
+}
+
 h1, h2 {
     font-weight: normal;
 }
