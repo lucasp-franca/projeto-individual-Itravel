@@ -1,1 +1,1 @@
-# projeto-inidivdual-Itravel
+# projeto-individual-Itravel
