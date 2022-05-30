@@ -206,3 +206,21 @@ p {
     border: solid 7px #DC41CC;
     border-radius: 10px;
 }
+
+.calculadora {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.opcoes {
+    display: flex;
+    
+    justify-content: space-between;
+}
+
+.botao_opcoes {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
