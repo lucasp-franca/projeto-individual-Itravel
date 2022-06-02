@@ -111,7 +111,7 @@
                 <h2>Se gostou desse país, clique aqui!</h2>
             </div>
             <div class="btn">
-                <button>
+                <button id="botao" onclick="cadastrar_like_italia()">
                     <img src="img/heart.png" alt="">
                 </button>
             </div>
@@ -126,3 +126,11 @@
     </div>
 </body>
 </html>
+
+<script>
+
+    function cadastrar_like_italia() {
+        botao.innerHTML = `<img style='width:120px; height: 120px;' src="img/likerosa.png" alt="">`
+    }
+
+</script>
