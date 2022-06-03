@@ -31,7 +31,7 @@
                     <p>A cultura japonesa abarca muitos elementos tradicionais, que vêm se propagando há séculos pelas gerações familiares, e elementos modernos recém-introduzidos no país, muitos dos quais sob a influência de populações estrangeiras, como norte-americanas e europeias.</p>
                     <p>A maioria da população vivendo hoje no país é de origem autóctone, embora haja uma parcela significativa de coreanos, chineses, vietnamitas e também brasileiros. Pouco mais de 60% dos japoneses são praticantes de duas religiões de forma sincrética, que são o budismo e o xintoísmo.</p>
                     <p>Alguns dos elementos da cultura japonesa são amplamente difundidos no Ocidente, como as artes visuais — que incluem os mangás, os animes e o cinema japonês —, a religiosidade, os esportes (como karatê e o judô) e a culinária. A gastronomia japonesa é composta por muitos preparos à base de peixe, arroz e vegetais, além de carne de frango e porco. Entre os pratos típicos, estão o ramen (macarrão com ovo, carne e legumes), o sushi, os tempuras e o nikuman.</p>
-                    <img src="img/toquio-thumb.jpg" title="Cidade de Tóqui" alt="">
+                    <img src="img/toquio-thumb.jpg" title="Cidade de Tóquio" alt="">
                     <img src="img/monte-fuji.jpg" title="Monte Fuji" alt="">
                 </div>
             <div class="pt2">
@@ -78,23 +78,23 @@
                 <h2>Calculadora de viagem</h2>
                 <div class="container4">
                     <div class="opcoes">
-                        <input placeholder="Digite sua quantia de dinheiro" type="text">
+                        <input id="input_dinheiro_usuario" placeholder="Digite sua quantia de dinheiro" type="text">
                         <select name="" id="select_passagem">
-                            <option value="">Passagem ida e volta</option>
-                            <option value="">Passagem só de ida</option>
+                            <option value="9349">Passagem ida e volta</option>
+                            <option value="4674">Passagem só de ida</option>
                         </select>
                         <select name="" id="select_hotel">
-                            <option value="">Sem hospedagem</option>
-                            <option value="">Com hospedagem</option>
+                            <option value="0">Sem hospedagem</option>
+                            <option value="1358">Com hospedagem(7 dias)</option>
                         </select>
                     </div>
                     <div class="botao_opcoes">
-                        <button>
+                        <button onclick="calcular_viagem_japao()">
                             Calcular
                         </button>
                     </div>
-                    <div id="resultado">
-                        <p></p>
+                    <div>
+                        <p id="resultado"></p>
                     </div>
                 </div>
             </div>
@@ -132,6 +132,27 @@
 
     function cadastrar_like_japao() {
         botao.innerHTML = `<img style='width:120px; height: 120px;' src="img/likerosa.png" alt="">`
+    }
+
+    function calcular_viagem_japao() {
+        var dinheiro_usuario = Number(input_dinheiro_usuario.value)
+        var passagem = Number(select_passagem.value)
+        var hotel = Number(select_hotel.value)
+        var calculo_viagem = dinheiro_usuario - (passagem + hotel)
+
+
+        if (calculo_viagem < 0) {
+            resultado.style.color = 'red'
+            resultado.innerHTML = `Passagem: ${(passagem).toLocaleString('pt-Br', { style: 'currency', currency: 'BRL' })}<br>Hospedagem: ${hotel.toLocaleString('pt-Br', { style: 'currency', currency: 'BRL' })}<br>Dinheiro insuficiente. Continue juntando!`
+        }
+        else if (calculo_viagem == 0) {
+            resultado.style.color = 'green'
+            resultado.innerHTML = `Passagem: ${(passagem).toLocaleString('pt-Br', { style: 'currency', currency: 'BRL' })}<br>Hospedagem: ${hotel.toLocaleString('pt-Br', { style: 'currency', currency: 'BRL' })}<br>Prepare as malas! #PartiuViajar!`
+        }
+        else {
+            resultado.style.color = 'green'
+            resultado.innerHTML = `Passagem: ${(passagem).toLocaleString('pt-Br', { style: 'currency', currency: 'BRL'})}<br>Hospedagem: ${hotel.toLocaleString('pt-Br', { style: 'currency', currency: 'BRL' })}<br>Prepare as malas! #PartiuViajar! Ainda sobrará <b><u>${(calculo_viagem).toLocaleString('pt-Br', { style: 'currency', currency: 'BRL' })}</u></b> para você gastar!`
+        }
     }
 
 </script>

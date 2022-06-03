@@ -78,18 +78,18 @@
                 <h2>Calculadora de viagem</h2>
                 <div class="container4">
                     <div class="opcoes">
-                        <input placeholder="Digite sua quantia de dinheiro" type="text">
+                        <input id="input_dinheiro_usuario" placeholder="Digite sua quantia de dinheiro" type="text">
                         <select name="" id="select_passagem">
-                            <option value="">Passagem ida e volta</option>
-                            <option value="">Passagem só de ida</option>
+                            <option value="5292">Passagem ida e volta</option>
+                            <option value="2646">Passagem só de ida</option>
                         </select>
                         <select name="" id="select_hotel">
-                            <option value="">Sem hospedagem</option>
-                            <option value="">Com hospedagem</option>
+                            <option value="0">Sem hospedagem</option>
+                            <option value="1911">Com hospedagem(7 dias)</option>
                         </select>
                     </div>
                     <div class="botao_opcoes">
-                        <button>
+                        <button onclick="calcular_viagem_mexico()">
                             Calcular
                         </button>
                     </div>
@@ -131,6 +131,27 @@
 
     function cadastrar_like_mexico() {
         botao.innerHTML = `<img style='width:120px; height: 120px;' src="img/likerosa.png" alt="">`
+    }
+
+    function calcular_viagem_mexico() {
+        var dinheiro_usuario = Number(input_dinheiro_usuario.value)
+        var passagem = Number(select_passagem.value)
+        var hotel = Number(select_hotel.value)
+        var calculo_viagem = dinheiro_usuario - (passagem + hotel)
+
+
+        if (calculo_viagem < 0) {
+            resultado.style.color = 'red'
+            resultado.innerHTML = `Passagem: ${(passagem).toLocaleString('pt-Br', { style: 'currency', currency: 'BRL' })}<br>Hospedagem: ${hotel.toLocaleString('pt-Br', { style: 'currency', currency: 'BRL' })}<br>Dinheiro insuficiente. Continue juntando!`
+        }
+        else if (calculo_viagem == 0) {
+            resultado.style.color = 'green'
+            resultado.innerHTML = `Passagem: ${(passagem).toLocaleString('pt-Br', { style: 'currency', currency: 'BRL' })}<br>Hospedagem: ${hotel.toLocaleString('pt-Br', { style: 'currency', currency: 'BRL' })}<br>Prepare as malas! #PartiuViajar!`
+        }
+        else {
+            resultado.style.color = 'green'
+            resultado.innerHTML = `Passagem: ${(passagem).toLocaleString('pt-Br', { style: 'currency', currency: 'BRL'})}<br>Hospedagem: ${hotel.toLocaleString('pt-Br', { style: 'currency', currency: 'BRL' })}<br>Prepare as malas! #PartiuViajar! Ainda sobrará <b><u>${(calculo_viagem).toLocaleString('pt-Br', { style: 'currency', currency: 'BRL' })}</u></b> para você gastar!`
+        }
     }
 
 </script>

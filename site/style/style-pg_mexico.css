@@ -228,6 +228,7 @@ p {
     border: none;
     border-bottom: solid 3px #DC41CC;
     border-radius: 10px;
+    text-align: center;
 }
 
 .opcoes input:focus {

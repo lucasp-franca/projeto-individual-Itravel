@@ -169,19 +169,16 @@
 
         if (calculo_viagem < 0) {
             resultado.style.color = 'red'
-            resultado.innerHTML = `Dinheiro insuficiente. Continue juntando!`
+            resultado.innerHTML = `Passagem: ${(passagem).toLocaleString('pt-Br', { style: 'currency', currency: 'BRL' })}<br>Hospedagem: ${hotel.toLocaleString('pt-Br', { style: 'currency', currency: 'BRL' })}<br>Dinheiro insuficiente. Continue juntando!`
         }
         else if (calculo_viagem == 0) {
             resultado.style.color = 'green'
-            resultado.innerHTML = `Prepare as malas! #PartiuViajar!`
+            resultado.innerHTML = `Passagem: ${(passagem).toLocaleString('pt-Br', { style: 'currency', currency: 'BRL' })}<br>Hospedagem: ${hotel.toLocaleString('pt-Br', { style: 'currency', currency: 'BRL' })}<br>Prepare as malas! #PartiuViajar!`
         }
         else {
             resultado.style.color = 'green'
-            resultado.innerHTML = `Prepare as malas! #PartiuViajar! Ainda sobrará <b><u>${(calculo_viagem).toLocaleString('pt-Br', { style: 'currency', currency: 'BRL' })}</u></b> para você gastar!`
+            resultado.innerHTML = `Passagem: ${(passagem).toLocaleString('pt-Br', { style: 'currency', currency: 'BRL'})}<br>Hospedagem: ${hotel.toLocaleString('pt-Br', { style: 'currency', currency: 'BRL' })}<br>Prepare as malas! #PartiuViajar! Ainda sobrará <b><u>${(calculo_viagem).toLocaleString('pt-Br', { style: 'currency', currency: 'BRL' })}</u></b> para você gastar!`
         }
-
-
-
     }
 
 </script>
