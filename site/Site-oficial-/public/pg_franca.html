@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itravel | França</title>
+    <link rel="stylesheet" href="style/style-pg_franca.css">
+    <link rel="shortcut icon" href="img/icone.png" type="image/x-icon">
+</head>
+<body class="fadeIn">
+    <div class="header">
+        <div class="container">
+            <div class="title_img">
+                <img src="img/flight.png" alt="">
+                <h1>Itravel</h1>
+            </div>
+                <ul class="navbar">
+                    <li><a href="pg_inicio.html">Início</a></li>
+                    <li class="agora"><a href="pg_selecao_pais.html">Países</a></li>
+                    <li><a href="">Dashboard</a></li>
+                    <li><a href="index.html">Sair</a></li>
+                </ul>
+        </div>
+    </div>
+    <div class="folha_pais">
+        <div class="container1">
+           <div class="folha">
+                <div class="pt1">
+                    <h1>França</h1>
+                    <p>A França desperta no imaginário das pessoas um desejo incrível de conhecer o país, não é à toa que é o país mais visitado do mundo. Imagine passear pelas ruas de Paris, explorar as regiões de vinho ou desfrutar de um maravilhoso verão na Riviera Francesa. Só de pensar já dá vontade de arrumar as malas, não é mesmo?</p>
+                    <p>O turismo na França, não se aplica somente à linda Paris. Sim, a capital francesa é tudo aquilo que dizem e ir a Paris é sempre uma experiência mágica</p>
+                    <p>No entanto, existem muitas outras regiões da França imperdíveis para turismo. A Normandia, Alcácia, Cote D’Azur, Bordeaux e Borgonha costumam agradar muito aos turistas. Sem falar da Córsega, uma ilha paradisíaca pertencente à França.</p>
+                    <img src="img/Paris.jpg" title="Torre Eiffel - Paris" alt="">
+                    <img src="img/borgonha.jpg" title="Borgonha" alt="">
+                </div>
+            <div class="pt2">
+                <h2>Comidas Típicas</h2>
+                <div class="comida">
+                    <div class="txt">
+                        <h3>Cassoulet</h3>
+                        <p>Foi consagrado durante a Guerra dos Cem Anos. A história deste prato é bem interessante, pois foi criado pela população mais pobre que reunia todos alimentos que tinham para alimentar os soldados da guerra.</p>
+                        <p>Ele é feito com: bacon, carne de porco, feijão, salsicha. Hoje é um prato bem conhecido e é delicioso!</p>
+                    </div>
+                    <div>
+                        <img src="img/cassoulet.jpg" title="Cassoulet" alt="">
+                    </div>
+                </div>
+                <div class="comida">
+                    <div>
+                        <img src="img/Ratatouille-758x474.jpg" title="Ratatouille" alt="">
+                    </div>
+                    <div class="txt">
+                        <h3>Ratatouille</h3>
+                        <p>Este prato ficou mundialmente conhecido depois do filme do ratinho. Ele é essencial na culinária francesa. Trata-se de uma explosão de sabores: pimentão, abobrinha, berinjela e tomate, adicionado de cebolas, alho, azeite e algumas ervas. Tudo cozido. Aqui no Brasil também é bem conhecido!</p>
+                    </div>
+                </div>
+            </div>
+           </div>
+        </div>
+    </div>
+    <div class="eu">
+        <div class="container2">
+            <div class="folha">
+                <h3>Por que eu quero viajar para este país?</h3>
+                <p>Eu considero a França um país muito elegante, o que mais me atrai são as arquiteturas das contruções que tem nas cidades. Me remete a algo mais medieval e tradicioanalista, isso é o que mais me encanta na França e por isso tenho esse interesse em visita-lá.
+                
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="ferramentas">
+        <div class="container3">
+            <div class="calculadora">
+                <h2>Calculadora de viagem</h2>
+                <div class="container4">
+                    <div class="opcoes">
+                        <input id="input_dinheiro_usuario" placeholder="Digite sua quantia de dinheiro" type="text">
+                        <select name="" id="select_passagem">
+                            <option value="7500">Passagem ida e volta</option>
+                            <option value="3750">Passagem só de ida</option>
+                        </select>
+                        <select name="" id="select_hotel">
+                            <option value="0">Sem hospedagem</option>
+                            <option value="503">Com hospedagem</option>
+                        </select>
+                    </div>
+                    <div class="botao_opcoes">
+                        <button onclick="calcular_viagem_franca()">
+                            Calcular
+                        </button>
+                    </div>
+                    <div id="resultado">
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+            <div class="mapa">
+                <div class="iframe">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5653620.942475826!2d2.0516999500000006!3d46.219264949999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd54a02933785731%3A0x6bfd3f96c747d9f7!2zRnJhbsOnYQ!5e0!3m2!1spt-BR!2sbr!4v1654015512220!5m2!1spt-BR!2sbr" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="like">
+        <div class="container4">
+            <div class="titulo">
+                <h2>Se gostou desse país, clique aqui!</h2>
+            </div>
+            <div class="btn">
+                <button id="botao" onclick="cadastrar_like_franca()">
+                    <img src="img/heart.png" alt="">
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="container_footer">
+            <p>
+                Feito com amor por um aluno SPTech © 2022
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<script>
+
+    function cadastrar_like_franca() {
+        botao.innerHTML = `<img style='width:120px; height: 120px;' src="img/likerosa.png" alt="">`
+    }
+
+    function calcular_viagem_franca() {
+        var dinheiro_usuario = Number(input_dinheiro_usuario.value)
+        var passagem = Number(select_passagem.value)
+        var hotel = Number(select_hotel.value)
+        var calculo_viagem = dinheiro_usuario - (passagem + hotel)
+
+
+        if (calculo_viagem < 0) {
+            resultado.style.color = 'red'
+            resultado.innerHTML = `Passagem: ${(passagem).toLocaleString('pt-Br', { style: 'currency', currency: 'BRL' })}<br>Hospedagem: ${hotel.toLocaleString('pt-Br', { style: 'currency', currency: 'BRL' })}<br>Dinheiro insuficiente. Continue juntando!`
+        }
+        else if (calculo_viagem == 0) {
+            resultado.style.color = 'green'
+            resultado.innerHTML = `Passagem: ${(passagem).toLocaleString('pt-Br', { style: 'currency', currency: 'BRL' })}<br>Hospedagem: ${hotel.toLocaleString('pt-Br', { style: 'currency', currency: 'BRL' })}<br>Prepare as malas! #PartiuViajar!`
+        }
+        else {
+            resultado.style.color = 'green'
+            resultado.innerHTML = `Passagem: ${(passagem).toLocaleString('pt-Br', { style: 'currency', currency: 'BRL'})}<br>Hospedagem: ${hotel.toLocaleString('pt-Br', { style: 'currency', currency: 'BRL' })}<br>Prepare as malas! #PartiuViajar! Ainda sobrará <b><u>${(calculo_viagem).toLocaleString('pt-Br', { style: 'currency', currency: 'BRL' })}</u></b> para você gastar!`
+        }
+    }
+
+
+</script>

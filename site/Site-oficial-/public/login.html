@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itravel | Login</title>
+    <link rel="stylesheet" href="style/style-login.css">
+    <link rel="shortcut icon" href="img/icone.png" type="image/x-icon">
+</head>
+<body class="fadeIn">
+    <div class="container">
+        <div class="container1">
+            <div class="voltar">
+                <a href="index.html">
+                    Voltar
+                </a>
+            </div>
+            <div class="container2">
+                <div class="card">
+                    <div class="card2">
+                        <h3>Login</h3>
+                        <form action="">
+                            <label for="">E-mail:</label>
+                            <input id="input_email" type="text">
+                            <label for="">Senha:</label>
+                            <input id="input_senha" type="password">
+                            <button onclick="entrar()">
+                                <a href="#">
+                                    Entrar
+                                </a>
+                            </button>
+                        </form>
+                    </div>
+                    <div id="validacao">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="container_footer">
+            <p>
+                Feito com amor por um aluno SPTech © 2022
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+
+    function entrar() {
+        var emailVar = input_email.value
+        var senhaVar = input_senha.value
+        
+        if(emailVar.length == false) {
+            validacao.innerHTML = "Digite seu e-mail."
+        }
+        else if(emailVar.indexOf("@") < 0) {
+            validacao.innerHTML = 'E-mail sem "@".'
+        }
+        else if(emailVar.endsWith("gmail.com") == false) {
+            validacao.innerHTML = 'E-mail não termina com "gmail.com".'
+        }
+        else if(senhaVar.length == false) {
+            validacao.innerHTML = "Digite sua senha."
+        }
+        else if(senhaVar.length > 0 && senhaVar.length < 8) {
+            validacao.innerHTML = "Senha deve ter pelo menos 8 caracteres."
+        }
+        else {
+            fetch('/usuarios/autenticar', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        emailServer: emailVar,
+        senhaServer: senhaVar
+      })
+    })
+      .then(function (resposta) {
+        console.log('ESTOU NO THEN DO entrar()!')
+
+        if (resposta.ok) {
+          console.log(resposta)
+
+          resposta.json().then((json) => {
+            console.log(json)
+            console.log(JSON.stringify(json))
+
+            sessionStorage.EMAIL_USUARIO = json.emailUsuario
+            sessionStorage.NOME_USUARIO = json.nomeUsuario
+            sessionStorage.ID_USUARIO = json.idUsuario
+
+            setTimeout(function () {
+              window.location = '../pg_inicio.html'
+            }, 1000) // apenas para exibir o loading
+          })
+        } else {
+          console.log('Houve um erro ao tentar realizar o login!')
+
+          resposta.text().then((texto) => {
+            console.error(texto)
+            finalizarAguardar(texto)
+          })
+        }
+      })
+      .catch(function (erro) {
+        console.log(erro)
+      })
+
+    return false
+        }
+    }
+
+</script>

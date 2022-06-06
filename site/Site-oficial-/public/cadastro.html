@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itravel | Cadastro</title>
+    <link rel="stylesheet" href="style/style-cadastro.css">
+    <link rel="shortcut icon" href="img/icone.png" type="image/x-icon">
+</head>
+<body class="fadeIn">
+    <div class="container">
+        <div class="container1">
+            <div class="voltar">
+                <a href="index.html">
+                    Voltar
+                </a>
+            </div>
+            <div class="container2">
+                <div class="card">
+                    <div class="card2">
+                        <h3>Cadastre aqui!</h3>
+                        <form action="">
+                            <div class="cadastro"> 
+                                <div class="nome_cadastro">
+                                    <label for="">Nome:</label>
+                                    <label for="">E-mail:</label>
+                                    <label id="senha" for="">Senha:</label>
+                                    <label id="label" for="">Confirmar Senha:</label>
+                                </div>
+                                <div>
+                                    <input id="inputname" type="text">
+                                
+                                    <input id="input_email" type="text">
+                                
+                                    <input id="input_senha" type="password">
+                                
+                                    <input id="input_confirmacao_senha" type="password">
+                                </div>
+                            </div>
+                            <button onclick="cadastrar()">
+                                <a href="#">
+                                    Cadastrar
+                                </a>
+                            </button>
+                        </form>
+                        <div id="validacao">
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="container_footer">
+            <p>
+                Feito com amor por um aluno SPTech © 2022
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<script>
+
+    function cadastrar() {
+        var nomeVar = inputname.value
+        var emailVar = input_email.value
+        var senhaVar = input_senha.value
+        var confirmacaoSenha = input_confirmacao_senha.value
+
+        if(nomeVar.length == false && emailVar.length == false && senhaVar.length == false && confirmacaoSenha.length == false) {
+            validacao.innerHTML = "Preencha todos os campos para prosseguir."
+        }
+        else if(nomeVar.length == false) {
+            validacao.innerHTML = "Preencha o campo nome."
+        }
+        else if(nomeVar.length > 0 && nomeVar.length <= 3) {
+            validacao.innerHTML = "Nome precisa ter mais de 3 letras."
+        }
+        else if(emailVar.length == false) {
+            validacao.innerHTML = "Preencha o campo e-mail."
+        }
+        else if(emailVar.endsWith("@gmail.com") == false) {
+            validacao.innerHTML = 'E-mail deve terminar com "@gmail.com".'
+        }
+        else if(senhaVar.length == false) {
+            validacao.innerHTML = "Preencha o campo senha."
+        }
+        else if(senhaVar.length < 8) {
+            validacao.innerHTML = "Senha deve conter pelo menos 8 caracteres."
+        }
+        else if(confirmacaoSenha.length == false) {
+            validacao.innerHTML = "Preencha o campo confirmação de senha."
+        }
+        else if(confirmacaoSenha != senhaVar) {
+            validacao.innerHTML = "Campo senha e confirmação de senha não estão iguais."
+        }
+        else {
+            fetch('/usuarios/cadastrar', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar
+      })
+    })
+      .then(function (resposta) {
+        console.log('resposta: ', resposta)
+
+        if (resposta.ok) {
+          //cardErro.style.display = 'block'
+          //mensagem_erro.innerHTML = 'Cadastro realizado com sucesso!'
+          window.location = 'login.html'
+          //limparFormulario()
+          finalizarAguardar()
+        } else {
+          throw 'Houve um erro ao tentar realizar o cadastro!'
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`)
+        finalizarAguardar()
+      })
+
+    return false
+        }
+
+    }
+
+    function aguardar() {
+    var divAguardar = document.getElementById('div_aguardar')
+    divAguardar.style.display = 'flex'
+  }
+
+  function finalizarAguardar(texto) {
+    var divAguardar = document.getElementById('div_aguardar')
+    divAguardar.style.display = 'none'
+
+    var divErrosLogin = document.getElementById('div_erros_login')
+    if (texto) {
+      divErrosLogin.innerHTML = texto
+    }
+  }
+
+</script>
