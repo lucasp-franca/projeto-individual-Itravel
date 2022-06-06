@@ -1,0 +1,128 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #3C3C3C;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+@-webkit-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; } 
+    }
+    @-moz-keyframes fadeIn {
+    0% { opacity: 0;}
+    100% { opacity: 1; }
+    }
+    @-o-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+    }
+    @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+    }
+ 
+.fadeIn {
+        -webkit-animation: fadeIn 0.5s ease-in-out;
+        -moz-animation: fadeIn 0.5s ease-in-out;
+        -o-animation: fadeIn 0.5s ease-in-out;
+        animation: fadeIn 0.5s ease-in-out;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.header {
+    background-color: #DC41CC;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 1px 6px black;
+    position: -webkit-sticky; /* Necessário para funcionar no Safari */
+    position: sticky;
+    top: 0;
+}
+
+.container {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container img {
+    width: 60px;
+}
+
+.container h1 {
+    font-weight: normal;
+}
+
+.title_img {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.navbar {
+    width: 40%;
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    align-items: center;
+}
+
+li:hover {
+    text-decoration: underline;
+}
+
+h1, h2 {
+    font-weight: normal;
+}
+
+.agora {
+    font-weight: bold;
+}
+
+.dash {
+    display: flex;
+    justify-content: center;
+}
+
+.container1 {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    height: 500px;
+    margin-top: 50px;
+    border-radius: 20px;
+    box-shadow: 3px 3px 10px black;
+}
+
+.folha {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.folha h1, h2 {
+    color: #DC41CC;
+}
+
+.footer {
+    background-color: #DC41CC;
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+    height: 60px;
+}
+
+.container_footer {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

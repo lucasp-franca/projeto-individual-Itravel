@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itravel | Dashboard</title>
+    <link rel="stylesheet" href="../style/style-dashboard.css">
+    <link rel="shortcut icon" href="../img/icone.png" type="image/x-icon">
+    <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
+</head>
+<body class="fadeIn">
+    <div class="header">
+        <div class="container">
+            <div class="title_img">
+                <img src="../img/flight.png" alt="">
+                <h1>Itravel</h1>
+            </div>
+                <ul class="navbar">
+                    <li><a href="../pg_inicio.html">Início</a></li>
+                    <li><a href="../pg_selecao_pais.html">Países</a></li>
+                    <li class="agora"><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="../index.html">Sair</a></li>
+                </ul>
+        </div>
+    </div>
+    <div class="dash">
+        <div class="container1">
+            <div class="folha">
+                <div>
+                    <h1>Dashboard</h1>
+                </div>
+                <div>
+                    <h2>Quantidade de like em cada país</h2>
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="container_footer">
+            <p>
+                Feito com amor por um aluno SPTech © 2022
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<script>
+    var respostaCurtidas;
+function obterDadosGrafico() {
+
+    if (proximaAtualizacao != undefined) {
+      clearTimeout(proximaAtualizacao);
+    }
+
+    fetch(`/medidas/ultimas/${idVeiculo}`, { cache: 'no-store' }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+          resposta.reverse();
+
+          plotarGrafico(resposta);
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+      }
+    })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+      });
+  }
+
+  // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
+  // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
+  // A função *plotarGrafico* também invoca a função *atualizarGrafico*
+  function plotarGrafico(resposta) {
+    console.log('Iniciando plotagem do gráfico...');
+
+
+
+    var qtdCurtidas = {
+      labels: [],
+      datasets: [
+        {
+          yAxisID: 'y-curtidas',
+          label: 'Quantidade de Curtidas',
+          borderColor: '#DC41CC',
+          backgroundColor: '#DC41CC',
+          fill: true,
+          data: []
+        }
+      ]
+    };
+
+    for (i = 0; i < respostaCurtidas.length; i++) {
+      var registroCurtidas = respostaCurtidas[i];
+      qtdCurtidas.labels.push(registroCurtidas.nome_pais);
+      qtdCurtidas.datasets[0].data.push(registroCurtidas.curtida);
+    }
+
+    console.log(JSON.stringify(qtdCurtidas));
+
+    const ctx = document.getElementById('myChart').getContext('2d')
+    window.myChart = Chart.Line(ctx, {
+      type: 'bar',
+      data: qtdCurtidas,
+      options: {
+        responsive: true,
+        animation: { duration: 500 },
+        hoverMode: 'index',
+        stacked: false,
+        title: {
+          display: false,
+          text: 'Dados capturados'
+        },
+        scales: {
+          yAxes: [{
+            type: 'linear',
+            display: true,
+            position: 'left',
+            id: 'y-curtidas',
+            ticks: {
+              beginAtZero: true,
+              max: 100,
+              min: 0
+            }
+          },],
+        }
+      }
+    });
+  }
+
+function count() {
+    fetch(`/avisos/count`).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+          respostaCurtidas = resposta
+        });
+      } else {
+        throw ('Nenhum resultado encontrado!')
+      }
+    })
+      .catch(function (resposta) {
+
+        console.error(resposta);
+      });
+  }
+
+</script>
