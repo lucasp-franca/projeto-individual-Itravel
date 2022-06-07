@@ -27,6 +27,26 @@ router.post("/publicar/:idUsuario", function (req, res) {
     avisoController.publicar(req, res);
 });
 
+router.post("/enviar_like_canada/:idUsuario", function (req, res) {
+    avisoController.enviar_like_canada(req, res);
+});
+
+router.post("/enviar_like_japao/:idUsuario", function (req, res) {
+    avisoController.publicar(req, res);
+});
+
+router.post("/enviar_like_mexico/:idUsuario", function (req, res) {
+    avisoController.publicar(req, res);
+});
+
+router.post("/enviar_like_franca/:idUsuario", function (req, res) {
+    avisoController.publicar(req, res);
+});
+
+router.post("/enviar_like_italia/:idUsuario", function (req, res) {
+    avisoController.publicar(req, res);
+});
+
 router.put("/editar/:idAviso", function (req, res) {
     avisoController.editar(req, res);
 });

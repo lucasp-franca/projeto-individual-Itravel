@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="../img/icone.png" type="image/x-icon">
     <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
 </head>
-<body class="fadeIn">
+<body onload="count()" class="fadeIn">
     <div class="header">
         <div class="container">
             <div class="title_img">
@@ -30,9 +30,9 @@
                 <div>
                     <h1>Dashboard</h1>
                 </div>
-                <div>
-                    <h2>Quantidade de like em cada país</h2>
-                    <canvas id="myChart"></canvas>
+                <div style="width: 600px">
+                    <h2 style="text-align:center">Quantidade de like em cada país</h2>
+                    <canvas style="width: 80%;" id="myChart"></canvas>
                 </div>
             </div>
         </div>
@@ -49,96 +49,46 @@
 
 
 <script>
-    var respostaCurtidas;
-function obterDadosGrafico() {
-
-    if (proximaAtualizacao != undefined) {
-      clearTimeout(proximaAtualizacao);
-    }
-
-    fetch(`/medidas/ultimas/${idVeiculo}`, { cache: 'no-store' }).then(function (response) {
-      if (response.ok) {
-        response.json().then(function (resposta) {
-          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-          resposta.reverse();
-
-          plotarGrafico(resposta);
-        });
-      } else {
-        console.error('Nenhum dado encontrado ou erro na API');
-      }
-    })
-      .catch(function (error) {
-        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-      });
-  }
-
-  // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
-  // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
-  // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-  function plotarGrafico(resposta) {
-    console.log('Iniciando plotagem do gráfico...');
 
 
 
-    var qtdCurtidas = {
-      labels: [],
-      datasets: [
-        {
-          yAxisID: 'y-curtidas',
-          label: 'Quantidade de Curtidas',
-          borderColor: '#DC41CC',
-          backgroundColor: '#DC41CC',
-          fill: true,
-          data: []
-        }
-      ]
-    };
+  var canada = ''
+  var japao = ''
+  var mexico = ''
+  var franca = ''
+  var italia = ''
 
-    for (i = 0; i < respostaCurtidas.length; i++) {
-      var registroCurtidas = respostaCurtidas[i];
-      qtdCurtidas.labels.push(registroCurtidas.nome_pais);
-      qtdCurtidas.datasets[0].data.push(registroCurtidas.curtida);
-    }
+  var curtidaCanada = 0
+  var curtidaJapao = 0
+  var curtidaMexico = 0
+  var curtidaFranca = 0
+  var curtidaItalia = 0
 
-    console.log(JSON.stringify(qtdCurtidas));
-
-    const ctx = document.getElementById('myChart').getContext('2d')
-    window.myChart = Chart.Line(ctx, {
-      type: 'bar',
-      data: qtdCurtidas,
-      options: {
-        responsive: true,
-        animation: { duration: 500 },
-        hoverMode: 'index',
-        stacked: false,
-        title: {
-          display: false,
-          text: 'Dados capturados'
-        },
-        scales: {
-          yAxes: [{
-            type: 'linear',
-            display: true,
-            position: 'left',
-            id: 'y-curtidas',
-            ticks: {
-              beginAtZero: true,
-              max: 100,
-              min: 0
-            }
-          },],
-        }
-      }
-    });
-  }
 
 function count() {
     fetch(`/avisos/count`).then(function (response) {
       if (response.ok) {
         response.json().then(function (resposta) {
           console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-          respostaCurtidas = resposta
+          plotarGrafico(resposta)
+        //   canada = resposta[0].nome_pais
+        //   curtidaCanada = resposta[0].curtida
+        //   japao = resposta[1].nome_pais
+        //   curtidaJapao = resposta[1].curtida
+        //   mexico = resposta[2].nome_pais
+        //   curtidaMexico = resposta[2].curtida
+        //   franca = resposta[3].nome_pais
+        //   curtidaFranca = resposta[3].curtida
+        //   italia = resposta[4].nome_pais
+        //   curtidaItalia = resposta[4].curtida
+
+        //   data.datasets[0].data[0] = curtidaCanada
+        //   data.datasets[0].data[1] = curtidaJapao
+        //   data.datasets[0].data[2] = curtidaMexico
+        //   data.datasets[0].data[3] = curtidaFranca
+        //   data.datasets[0].data[4] = curtidaItalia
+
+          
         });
       } else {
         throw ('Nenhum resultado encontrado!')
@@ -148,6 +98,146 @@ function count() {
 
         console.error(resposta);
       });
+
+      
   }
+
+
+  
+
+  function plotarGrafico(resposta) {
+        console.log('iniciando plotagem do gráfico...');
+
+        var dados = {
+            labels: [],
+            datasets: [
+                {
+                    yAxisID: 'y-canada',
+                    label: 'Canadá',
+                    borderColor: '#DC41CC',
+                    backgroundColor: '#DC41CC',
+                    fill: true,
+                    data: []
+                },
+                {
+                    yAxisID: 'y-japao',
+                    label: 'Japão',
+                    borderColor: '#DC41CC',
+                    backgroundColor: '#DC41CC',
+                    fill: true,
+                    data: []
+                },
+                {
+                    yAxisID: 'y-mexico',
+                    label: 'México',
+                    borderColor: '#DC41CC',
+                    backgroundColor: '#DC41CC',
+                    fill: true,
+                    data: []
+                },
+                {
+                    yAxisID: 'y-franca',
+                    label: 'França',
+                    borderColor: '#DC41CC',
+                    backgroundColor: '#DC41CC',
+                    fill: true,
+                    data: []
+                },
+                {
+                    yAxisID: 'y-italia',
+                    label: 'Itália',
+                    borderColor: '#DC41CC',
+                    backgroundColor: '#DC41CC',
+                    fill: true,
+                    data: []
+                }
+            ]
+        };
+
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            dados.datasets[i].data.push(registro.curtida);
+            
+        }
+
+        dados.labels.push("Países");
+        console.log(JSON.stringify(dados));
+
+        var ctx = myChart.getContext('2d');
+        window.grafico_linha = Chart.Bar(ctx, {
+            data: dados,
+            options: {
+                responsive: true,
+                animation: { duration: 500 },
+                hoverMode: 'index',
+                stacked: false,
+                title: {
+                    display: false,
+                    text: 'Dados capturados'
+                },
+                scales: {
+                    yAxes: [{
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        id: 'y-canada',
+                        ticks: {
+                            beginAtZero: true,
+                            max: 100,
+                            min: 0
+                        }
+                    },
+                    {
+                        type: 'linear',
+                        display: false,
+                        position: 'left',
+                        id: 'y-japao',
+                        ticks: {
+                            beginAtZero: true,
+                            max: 100,
+                            min: 0
+                        }
+                    },
+                    {
+                        type: 'linear',
+                        display: false,
+                        position: 'left',
+                        id: 'y-mexico',
+                        ticks: {
+                            beginAtZero: true,
+                            max: 100,
+                            min: 0
+                        }
+                    },
+                    {
+                        type: 'linear',
+                        display: false,
+                        position: 'left',
+                        id: 'y-franca',
+                        ticks: {
+                            beginAtZero: true,
+                            max: 100,
+                            min: 0
+                        }
+                    }, {
+                        type: 'linear',
+                        display: false,
+                        position: 'right',
+                        id: 'y-italia',
+                        ticks: {
+                            beginAtZero: true,
+                            max: 100,
+                            min: 0
+                        },
+
+                        gridLines: {
+                            drawOnChartArea: false,
+                        },
+                    }],
+                }
+            }
+        });
+
+    }
 
 </script>

@@ -24,7 +24,7 @@ function entrar() {
 
           sessionStorage.LOGIN_USUARIO = json.login
           sessionStorage.NOME_USUARIO = json.nome
-          sessionStorage.ID_USUARIO = json.id
+          sessionStorage.ID_USUARIO = json.id_usuario
 
           setTimeout(function () {
             window.location = '/index.html'

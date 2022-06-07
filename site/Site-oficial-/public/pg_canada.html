@@ -157,9 +157,34 @@
 
 <script>
 
+    var id_usuario = sessionStorage.ID_USUARIO
+
     function cadastrar_like_canada() {
         botao.innerHTML = `<img style='width:120px; height: 120px;' src="img/likerosa.png" alt="">`
+        enviar_like_canada()
     }
+
+    function enviar_like_canada(req, res) {
+    var idUsuario = id_usuario;
+
+    if (idUsuario == undefined) {
+        res.status(403).send("O id do usuário está indefinido!");
+    } else {
+        avisoModel.enviar_like_canada(idUsuario)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            )
+            .catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
 
     function calcular_viagem() {
         var dinheiro_usuario = Number(input_dinheiro_usuario.value)
