@@ -138,7 +138,7 @@
                 <h2>Se gostou desse país, clique aqui!</h2>
             </div>
             <div class="btn">
-                <button id="botao" onclick="cadastrar_like_canada()">
+                <button id="botao" onclick="cadastrar_gostei_canada()">
                     <img src="img/heart.png" alt="">
                 </button>
             </div>
@@ -157,34 +157,59 @@
 
 <script>
 
-    var id_usuario = sessionStorage.ID_USUARIO
+    var id_usuarioVar = sessionStorage.ID_USUARIO
 
-    function cadastrar_like_canada() {
+    function cadastrar_gostei_canada() {
         botao.innerHTML = `<img style='width:120px; height: 120px;' src="img/likerosa.png" alt="">`
-        enviar_like_canada()
+        
+        fetch('/usuarios/cadastrar_like_canada', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        idServer: id_usuarioVar
+      })
+    })
+      .then(function (resposta) {
+        console.log('resposta: ', resposta)
+
+        if (resposta.ok) {
+          //cardErro.style.display = 'block'
+          //mensagem_erro.innerHTML = 'Cadastro realizado com sucesso!'
+          window.location = 'pg_canada.html'
+          //limparFormulario()
+          finalizarAguardar()
+        } else {
+          throw 'Houve um erro ao tentar realizar o cadastro!'
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`)
+        finalizarAguardar()
+      })
+
+    return false
+        
     }
 
-    function enviar_like_canada(req, res) {
-    var idUsuario = id_usuario;
+    function aguardar() {
+    var divAguardar = document.getElementById('div_aguardar')
+    divAguardar.style.display = 'flex'
+  }
 
-    if (idUsuario == undefined) {
-        res.status(403).send("O id do usuário está indefinido!");
-    } else {
-        avisoModel.enviar_like_canada(idUsuario)
-            .then(
-                function (resultado) {
-                    res.json(resultado);
-                }
-            )
-            .catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
+  function finalizarAguardar(texto) {
+    var divAguardar = document.getElementById('div_aguardar')
+    divAguardar.style.display = 'none'
+
+    var divErrosLogin = document.getElementById('div_erros_login')
+    if (texto) {
+      divErrosLogin.innerHTML = texto
     }
-}
+  }
+
 
     function calcular_viagem() {
         var dinheiro_usuario = Number(input_dinheiro_usuario.value)
