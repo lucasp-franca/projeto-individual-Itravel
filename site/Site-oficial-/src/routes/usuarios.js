@@ -44,6 +44,22 @@ router.post("/cadastrar_like_canada", function (req, res) {
     usuarioController.cadastrar_like_canada(req, res);
 })
 
+router.post("/cadastrar_like_japao", function (req, res) {
+    usuarioController.cadastrar_like_japao(req, res);
+})
+
+router.post("/cadastrar_like_mexico", function (req, res) {
+    usuarioController.cadastrar_like_mexico(req, res);
+})
+
+router.post("/cadastrar_like_franca", function (req, res) {
+    usuarioController.cadastrar_like_franca(req, res);
+})
+
+router.post("/cadastrar_like_italia", function (req, res) {
+    usuarioController.cadastrar_like_italia(req, res);
+})
+
 
 router.post("/autenticar", function (req, res) {
     usuarioController.entrar(req, res);
