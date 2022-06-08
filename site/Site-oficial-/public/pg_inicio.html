@@ -41,7 +41,7 @@
             <div class="folha_descobrir_pais">
                 <h2>País do dia</h2>
                 <h3>Clique no botão e descubra um país pra você visitar!</h3>
-                <button onclick="descobrir()">Descubra</button>
+                <button id="btn" onclick="descobrir()">Descubra</button>
                 <p id="resultado"></p>
             </div>
         </div>
@@ -92,6 +92,7 @@
 
 <script>
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    var botao = false
     function descobrir() {
         var lista_paises = ["Canadá", "Japão", "México", "França", "Itália"]
         
@@ -101,7 +102,11 @@
             resultado.innerHTML = `${lista_paises[numero]}`
         }
         
+        botao = true
 
+        if(botao == true) {
+            document.getElementById("btn").disabled = true;
+        }
     }
 
 </script>
